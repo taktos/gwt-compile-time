@@ -16,7 +16,6 @@
     <!-- Convenience property to set the GWT version -->
     <gwtVersion>2.4.0</gwtVersion>
     <!-- GWT needs at least java 1.5 -->
-    <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -56,7 +55,7 @@
 
   <build>
     <!-- Generate compiled stuff in the folder used for developing mode -->
-    <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
+    <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
 
     <plugins>
 
@@ -75,30 +74,11 @@
             </goals>
           </execution>
         </executions>
-        <!-- Plugin configuration. There are many available options, see 
+        <!-- Plugin configuration. There are many available options, see
           gwt-maven-plugin documentation at codehaus.org -->
         <configuration>
-          <runTarget>Time.html</runTarget>
-          <hostedWebapp>${webappDirectory}</hostedWebapp>
+          <generateDirectory>src/main/java</generateDirectory>
           <i18nMessagesBundle>com.github.taktos.gwt.client.Messages</i18nMessagesBundle>
-        </configuration>
-      </plugin>
-
-      <!-- Copy static web files before executing gwt:run -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.1.1</version>
-        <executions>
-          <execution>
-            <phase>compile</phase>
-            <goals>
-              <goal>exploded</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <webappDirectory>${webappDirectory}</webappDirectory>
         </configuration>
       </plugin>
       <plugin>
@@ -111,6 +91,40 @@
         </configuration>
       </plugin>
     </plugins>
+    <pluginManagement>
+    	<plugins>
+    		<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+    		<plugin>
+    			<groupId>org.eclipse.m2e</groupId>
+    			<artifactId>lifecycle-mapping</artifactId>
+    			<version>1.0.0</version>
+    			<configuration>
+    				<lifecycleMappingMetadata>
+    					<pluginExecutions>
+    						<pluginExecution>
+    							<pluginExecutionFilter>
+    								<groupId>org.codehaus.mojo</groupId>
+    								<artifactId>
+    									gwt-maven-plugin
+    								</artifactId>
+    								<versionRange>
+    									[2.4.0,)
+    								</versionRange>
+    								<goals>
+    									<goal>i18n</goal>
+    									<goal>generateAsync</goal>
+    								</goals>
+    							</pluginExecutionFilter>
+    							<action>
+    								<ignore></ignore>
+    							</action>
+    						</pluginExecution>
+    					</pluginExecutions>
+    				</lifecycleMappingMetadata>
+    			</configuration>
+    		</plugin>
+    	</plugins>
+    </pluginManagement>
   </build>
 
 </project>
