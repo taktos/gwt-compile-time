@@ -3,6 +3,6 @@
 <module>
 	<inherits name="com.google.gwt.user.User" />
 	<inherits name="com.google.gwt.user.theme.standard.Standard" />
-	<entry-point class="com.github.taktos.gwt.module01.client.Module01"/>
+	<entry-point class="com.github.taktos.gwt.module02.client.Module02"/>
 	<source path="client" />
 </module>
