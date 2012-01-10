@@ -1,2 +1,4 @@
 target/
 src/main/webapp/WEB-INF/classes/
+.gwt/
+src/main/gwt-unitCache/
