@@ -57,30 +57,48 @@
     <!-- Generate compiled stuff in the folder used for developing mode -->
     <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
 
-    <plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>gwt-maven-plugin</artifactId>
+          <version>2.4.0</version>
+        </plugin>
 
-      <!-- GWT Maven Plugin -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>gwt-maven-plugin</artifactId>
-        <version>2.4.0</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>compile</goal>
-              <goal>test</goal>
-              <goal>i18n</goal>
-              <goal>generateAsync</goal>
-            </goals>
-          </execution>
-        </executions>
-        <!-- Plugin configuration. There are many available options, see
-          gwt-maven-plugin documentation at codehaus.org -->
-        <configuration>
-          <generateDirectory>src/main/java</generateDirectory>
-          <i18nMessagesBundle>com.github.taktos.gwt.client.Messages</i18nMessagesBundle>
-        </configuration>
-      </plugin>
+        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>
+                      gwt-maven-plugin
+                    </artifactId>
+                    <versionRange>
+                      [2.4.0,)
+                    </versionRange>
+                    <goals>
+                      <goal>i18n</goal>
+                      <goal>generateAsync</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -91,40 +109,62 @@
         </configuration>
       </plugin>
     </plugins>
-    <pluginManagement>
-    	<plugins>
-    		<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-    		<plugin>
-    			<groupId>org.eclipse.m2e</groupId>
-    			<artifactId>lifecycle-mapping</artifactId>
-    			<version>1.0.0</version>
-    			<configuration>
-    				<lifecycleMappingMetadata>
-    					<pluginExecutions>
-    						<pluginExecution>
-    							<pluginExecutionFilter>
-    								<groupId>org.codehaus.mojo</groupId>
-    								<artifactId>
-    									gwt-maven-plugin
-    								</artifactId>
-    								<versionRange>
-    									[2.4.0,)
-    								</versionRange>
-    								<goals>
-    									<goal>i18n</goal>
-    									<goal>generateAsync</goal>
-    								</goals>
-    							</pluginExecutionFilter>
-    							<action>
-    								<ignore></ignore>
-    							</action>
-    						</pluginExecution>
-    					</pluginExecutions>
-    				</lifecycleMappingMetadata>
-    			</configuration>
-    		</plugin>
-    	</plugins>
-    </pluginManagement>
   </build>
 
+  <profiles>
+    <profile>
+      <id>module01</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>gwt-maven-plugin</artifactId>
+            <!-- Plugin configuration. There are many available options, see
+            gwt-maven-plugin documentation at codehaus.org -->
+            <configuration>
+              <modules>
+                <module>com.github.taktos.gwt.module01.Module01</module>
+              </modules>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>module02</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>gwt-maven-plugin</artifactId>
+            <!-- Plugin configuration. There are many available options, see
+            gwt-maven-plugin documentation at codehaus.org -->
+            <configuration>
+              <modules>
+                <module>com.github.taktos.gwt.module02.Module02</module>
+              </modules>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>module03</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>gwt-maven-plugin</artifactId>
+            <!-- Plugin configuration. There are many available options, see
+            gwt-maven-plugin documentation at codehaus.org -->
+            <configuration>
+              <modules>
+                <module>com.github.taktos.gwt.module03.Module03</module>
+              </modules>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
