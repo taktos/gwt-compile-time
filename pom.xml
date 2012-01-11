@@ -166,5 +166,23 @@
         </plugins>
       </build>
     </profile>
+    <profile>
+      <id>module04</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>gwt-maven-plugin</artifactId>
+            <!-- Plugin configuration. There are many available options, see
+            gwt-maven-plugin documentation at codehaus.org -->
+            <configuration>
+              <modules>
+                <module>com.github.taktos.gwt.module04.Module04</module>
+              </modules>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
   </profiles>
 </project>
